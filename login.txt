@@ -1,0 +1,27 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Test Cases ***
+validLogin
+    [Template]    loginSteps
+    blaze.indy@gmail.com    16123239
+
+*** Keywords ***
+loginSteps
+    [Arguments]    ${user}    ${pass}
+    Open Browser    http://th.beecrazy.hk/?do_access=1
+    Click Image    xpath=//html/body/div[4]/div/div/div[1]/img
+    Click Element    //a[@class="login-modal reg top-pills"]
+    Input Text    //input[@name="email"]    ${user}
+    Input Password    //input[@name="password"]    ${pass}
+    Click Button    //button[@id="login-btn"]
+    Wait Until Element Is Visible    xpath=//html/body/div[4]/div/div/div[1]/img
+    Click Image    xpath=//html/body/div[4]/div/div/div[1]/img
+    ${getUserNameFormPage}=    Get Text    xpath=//html/body/div[2]/div[1]/div[1]/div/ul/li[2]/a
+    Should Be Equal As Strings    ${getUserNameFormPage}    ${user}    msg = Login Success    values=True
+    Mouse Over    xpath=//html/body/div[2]/div[1]/div[1]/div/ul/li[2]/a
+    Wait Until Element Is Visible    xpath=//html/body/div[2]/div[1]/div[1]/div/ul/li[2]/ul/li[6]/a
+    Click Element    xpath=//html/body/div[2]/div[1]/div[1]/div/ul/li[2]/ul/li[6]/a
+    Click Image    xpath=//html/body/div[4]/div/div/div[1]/img
+    ${logoutMsg}    Get Text    xpath=//html/body/div[2]/div[3]/div[2]/div
+    Close Browser
