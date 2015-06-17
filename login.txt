@@ -24,6 +24,5 @@ loginSteps
     Mouse Over    xpath=//html/body/div[2]/div[1]/div[1]/div/ul/li[2]/a
     Wait Until Element Is Visible    xpath=//html/body/div[2]/div[1]/div[1]/div/ul/li[2]/ul/li[6]/a
     Click Element    xpath=//html/body/div[2]/div[1]/div[1]/div/ul/li[2]/ul/li[6]/a
-    Click Image    xpath=//html/body/div[4]/div/div/div[1]/img
     ${logoutMsg}    Get Text    xpath=//html/body/div[2]/div[3]/div[2]/div
     Close Browser
