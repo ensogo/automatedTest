@@ -3,15 +3,17 @@ Library           Selenium2Library
 
 *** Test Cases ***
 validLogin
-    [Template]    validLoginSteps
+    [Template]    loginSteps
     blaze.indy@gmail.com    16123239
 
 *** Keywords ***
-validLoginSteps
+loginSteps
     [Arguments]    ${user}    ${pass}
     Open Browser    http://th.beecrazy.hk/?do_access=1
     Click Image    xpath=//html/body/div[4]/div/div/div[1]/img
+    Wait Until Element Is Visible    //a[@class="login-modal reg top-pills"]    50
     Click Element    //a[@class="login-modal reg top-pills"]
+    Wait Until Element Is Visible    //input[@name="email"]    50
     Input Text    //input[@name="email"]    ${user}
     Input Password    //input[@name="password"]    ${pass}
     Click Button    //button[@id="login-btn"]
