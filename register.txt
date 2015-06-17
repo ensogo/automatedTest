@@ -1,0 +1,20 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Test Cases ***
+validRegister
+
+*** Keywords ***
+registerSteps
+    [Arguments]    ${email}    ${password}    ${confirmPass}    ${firstName}    ${lastName}    ${mobileNo}
+    Open Browser    http://th.beecrazy.hk/?do_access=1
+    Click Image    xpath=//html/body/div[4]/div/div/div[1]/img
+    Click Element    //a[@class="login-modal reg top-pills"]
+    Click Button    //button[@id="register-toggle"]
+    Input Text    //input[@name="email"]    ${email}
+    Input Password    //input[@name="passwordil"]    ${password}
+    Input Password    //input[@name="password_confirmation"]    ${confirmPass}
+    Input Text    //input[@id="signup_first_name"]    ${firstName}
+    Input Text    //input[@id="signup_last_name"]    ${lastName}
+    Input Text    //input[@id="signup_mobile"]    ${mobileNo}
+    Click Button    //button[@id="signup-btn"]

@@ -3,11 +3,11 @@ Library           Selenium2Library
 
 *** Test Cases ***
 validLogin
-    [Template]    loginSteps
+    [Template]    validLoginSteps
     blaze.indy@gmail.com    16123239
 
 *** Keywords ***
-loginSteps
+validLoginSteps
     [Arguments]    ${user}    ${pass}
     Open Browser    http://th.beecrazy.hk/?do_access=1
     Click Image    xpath=//html/body/div[4]/div/div/div[1]/img
