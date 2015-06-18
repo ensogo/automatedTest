@@ -1,0 +1,14 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          ../zresources/resource.txt
+Resource          ../zresources/usecase_behavior.txt
+
+*** Test Cases ***
+Valid Register
+    [Template]    Enter Register Data
+    registest01@enso.com    password    password    regis01    registertest    +668122334455
+
+*** Keywords ***
+Register should be success
+
+Restore new register data

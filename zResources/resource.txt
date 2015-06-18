@@ -1,0 +1,2 @@
+*** Variables ***
+${URL}            http://th.beecrazy.hk/?do_access=1

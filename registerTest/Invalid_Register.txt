@@ -1,0 +1,40 @@
+*** Settings ***
+Test Teardown     Close Browser
+Library           Selenium2Library
+Resource          ../zresources/resource.txt
+Resource          ../zresources/usecase_behavior.txt
+
+*** Test Cases ***
+Invalid Register empty email
+    [Template]    Enter Register Data
+    ${EMPTY}    password    password    regis01    registertest    +668122334455
+
+Invalid Register empty password
+    [Template]    Enter Register Data
+    registest01@enso.com    ${EMPTY}    password    regis01    registertest    +668122334455
+
+Invalid Register empty password confirmation
+    [Template]    Enter Register Data
+    registest01@enso.com    password    ${EMPTY}    regis01    registertest    +668122334455
+
+Invalid Register empty name
+    [Template]    Enter Register Data
+    registest01@enso.com    password    password    ${EMPTY}    registertest    +668122334455
+
+Invalid Register empty lastname
+    [Template]    Enter Register Data
+    registest01@enso.com    password    password    regis01    ${EMPTY}    +668122334455
+
+Invalid Register empty mobile
+    [Template]    Enter Register Data
+    registest01@enso.com    password    password    regis01    registertest    ${EMPTY}
+
+Invalid Register empty all fields
+    [Template]    Enter Register Data
+    ${EMPTY}    ${EMPTY}    ${EMPTY}    ${EMPTY}    ${EMPTY}    ${EMPTY}
+
+*** Keywords ***
+register should be fail
+    Wait Until Page Contains Element    css=#login-message div[id="login-message-content"]
+    Element Should Be Visible    css=#login-message div[id="login-message-content"]
+    ${messageFromRegisterfaled}=    Get Text    css=#login-message div[id="login-message-content"]

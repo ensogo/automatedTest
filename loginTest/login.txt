@@ -1,0 +1,9 @@
+*** Keywords ***
+Enter Username and Password
+    [Arguments]    ${URL}    ${user}    ${pass}
+    Open Browser    ${URL}
+    Click Image    css=html body.th.th div#homepage-popup.modal.hide.fade.in div.modal-body div.container div.btnx img
+    Click Element    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li a.login-modal.reg.top-pills
+    Input Text    css =#login-form input[name="email"]    ${user}
+    Input Password    css=#login-form input[name="password"]    ${pass}
+    Click Button    css=#login-form button[id="login-btn"]

@@ -1,0 +1,32 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          resource.txt
+
+*** Keywords ***
+Enter Username and PassWord
+    [Arguments]    ${user}    ${pass}
+    Open Browser    ${URL}
+    Click Image    css=html body.th.th div#homepage-popup.modal.hide.fade.in div.modal-body div.container div.btnx img
+    Click Element    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li a.login-modal.reg.top-pills
+    Input Text    css =#login-form input[name="email"]    ${user}
+    Input Password    css=#login-form input[name="password"]    ${pass}
+    Click Button    css=#login-form button[id="login-btn"]
+
+Enter Register Data
+    [Arguments]    ${email}    ${password}    ${confirmPass}    ${firstName}    ${lastName}    ${mobileNo}
+    Open Browser    ${URL}
+    Click Image    css=html body.th.th div#homepage-popup.modal.hide.fade.in div.modal-body div.container div.btnx img
+    Click Element    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li a.login-modal.reg.top-pills
+    Click Button    //button[@id="register-toggle"]
+    Input Text    css =#signup-form input[name="email"]    ${email}
+    Input Password    css =#signup-form input[name="password"]    ${password}
+    Input Password    css =#signup-form input[name="password_confirmation"]    ${confirmPass}
+    Input Text    css=html body.th.th div.site-wrapper div#login-box.modal.hide.fade.in div.modal-content.content div.login-form-col div#signup-form-container.hide form#signup-form div.inputs-row input#signup_first_name    ${firstName}
+    Input Text    css=html body.th.th div.site-wrapper div#login-box.modal.hide.fade.in div.modal-content.content div.login-form-col div#signup-form-container.hide form#signup-form div.inputs-row input#signup_last_name    ${lastName}
+    Input Text    css=html body.th.th div.site-wrapper div#login-box.modal.hide.fade.in div.modal-content.content div.login-form-col div#signup-form-container.hide form#signup-form div.inputs-row input#signup_mobile    ${mobileNo}
+
+login with Facebook
+    Open Browser    ${URL}
+    Click Image    css=html body.th.th div#homepage-popup.modal.hide.fade.in div.modal-body div.container div.btnx img
+    Click Element    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li a.login-modal.reg.top-pills
+    Click Element    css=html body.th.th div.site-wrapper div#login-box.modal.hide.fade.in div.modal-content.content div.login-form-col div#login-form-container form#login-form a.fb-btn

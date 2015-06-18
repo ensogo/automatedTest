@@ -1,0 +1,23 @@
+*** Settings ***
+Suite Teardown    Close Browser
+Library           Selenium2Library
+Resource          ../zresources/resource.txt
+Resource          ../zresources/usecase_behavior.txt
+
+*** Test Cases ***
+Valid Login
+    [Template]    login sould be success
+    blaze.indy@gmail.com    16123239
+
+*** Keywords ***
+login sould be success
+    [Arguments]    ${URL}    ${user}    ${pass}
+    Enter Username and Password    ${URL}    ${user}    ${pass}
+    Wait Until Element Is Visible    css=html body.th.th div#homepage-popup.modal.hide.fade.in div.modal-body div.container div.btnx img
+    Click Image    css=html body.th.th div#homepage-popup.modal.hide.fade.in div.modal-body div.container div.btnx img
+    ${getUserNameFormPage}=    Get Text    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li.username a.user.top-pills
+    Should Be Equal As Strings    ${getUserNameFormPage}    ${user}
+    Mouse Over    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li.username a.user.top-pills
+    Wait Until Element Is Visible    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li.username ul.user-menu li.last a
+    Click Element    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li.username ul.user-menu li.last a
+    ${logoutMsg}    Get Text    css=html body.th.th div.site-wrapper div.wrapper div.container div.alert.alert-success
