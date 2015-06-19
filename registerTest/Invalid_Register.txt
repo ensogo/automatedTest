@@ -1,8 +1,8 @@
 *** Settings ***
-Test Teardown     Close Browser
+Test Teardown     register should be fail
 Library           Selenium2Library
-Resource          ../zresources/resource.txt
-Resource          ../zresources/usecase_behavior.txt
+Resource          ../resources/resource.txt
+Resource          ../resources/usecase_behavior.txt
 
 *** Test Cases ***
 Invalid Register empty email
@@ -32,6 +32,14 @@ Invalid Register empty mobile
 Invalid Register empty all fields
     [Template]    Enter Register Data
     ${EMPTY}    ${EMPTY}    ${EMPTY}    ${EMPTY}    ${EMPTY}    ${EMPTY}
+
+Invalid Register empty name lastname and mobile
+    [Template]    Enter Register Data
+    registest01@enso.com    password    password    ${EMPTY}    ${EMPTY}    ${EMPTY}
+
+Invalid Register empty username password and password_confirmation
+    [Template]    Enter Register Data
+    ${EMPTY}    ${EMPTY}    ${EMPTY}    regis01    registertest    +668122334455
 
 *** Keywords ***
 register should be fail

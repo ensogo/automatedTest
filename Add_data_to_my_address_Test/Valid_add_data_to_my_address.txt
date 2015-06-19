@@ -1,0 +1,24 @@
+*** Settings ***
+Suite Setup       Enter Username and PassWord    ${testTradeAcc_username}    ${testTradeAcc_password}
+Library           Selenium2Library
+Resource          my_address_behavior.txt
+Resource          ../Resources/resource.txt
+Resource          ../Resources/usecase_behavior.txt
+
+*** Test Cases ***
+Valid add data to my address by require fields and set as defualt address
+    input data to my address    Office    robot01    robotframework    abdulrahim building    robot01home    ${EMPTY}
+    ...    silom    กรุงเทพมหานคร    11111    0812235477
+    set data as default and submit from
+    address should be save
+
+Valid add data to my address all fields and set as default address
+    input data to my address    Office    robot01    robotframework    abdulrahim building    robot01home    robot01fhome
+    ...    silom    Bangkok    11111    0812235477
+    set data as default and submit from
+
+*** Keywords ***
+address should be save
+    Wait Until Element Is Visible    //*[@id="shipping_address_ids"]
+    Element Should Be Visible    //*[@id="shipping_address_ids"]
+    List Selection Should Be    //*[@id="shipping_address_ids"]    ${address}+"(Default)"

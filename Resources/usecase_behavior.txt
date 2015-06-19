@@ -6,7 +6,7 @@ Resource          resource.txt
 Enter Username and PassWord
     [Arguments]    ${user}    ${pass}
     Open Browser    ${URL}
-    Click Image    css=html body.th.th div#homepage-popup.modal.hide.fade.in div.modal-body div.container div.btnx img
+    close ad-on
     Click Element    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li a.login-modal.reg.top-pills
     Input Text    css =#login-form input[name="email"]    ${user}
     Input Password    css=#login-form input[name="password"]    ${pass}
@@ -15,7 +15,7 @@ Enter Username and PassWord
 Enter Register Data
     [Arguments]    ${email}    ${password}    ${confirmPass}    ${firstName}    ${lastName}    ${mobileNo}
     Open Browser    ${URL}
-    Click Image    css=html body.th.th div#homepage-popup.modal.hide.fade.in div.modal-body div.container div.btnx img
+    close ad-on
     Click Element    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li a.login-modal.reg.top-pills
     Click Button    //button[@id="register-toggle"]
     Input Text    css =#signup-form input[name="email"]    ${email}
@@ -24,9 +24,14 @@ Enter Register Data
     Input Text    css=html body.th.th div.site-wrapper div#login-box.modal.hide.fade.in div.modal-content.content div.login-form-col div#signup-form-container.hide form#signup-form div.inputs-row input#signup_first_name    ${firstName}
     Input Text    css=html body.th.th div.site-wrapper div#login-box.modal.hide.fade.in div.modal-content.content div.login-form-col div#signup-form-container.hide form#signup-form div.inputs-row input#signup_last_name    ${lastName}
     Input Text    css=html body.th.th div.site-wrapper div#login-box.modal.hide.fade.in div.modal-content.content div.login-form-col div#signup-form-container.hide form#signup-form div.inputs-row input#signup_mobile    ${mobileNo}
+    Click Button    css=.signup-btn-row button[id="signup-btn"]
 
 login with Facebook
     Open Browser    ${URL}
     Click Image    css=html body.th.th div#homepage-popup.modal.hide.fade.in div.modal-body div.container div.btnx img
     Click Element    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li a.login-modal.reg.top-pills
     Click Element    css=html body.th.th div.site-wrapper div#login-box.modal.hide.fade.in div.modal-content.content div.login-form-col div#login-form-container form#login-form a.fb-btn
+
+close ad-on
+    Wait Until Element Is Visible    css=html body.th.th div#homepage-popup.modal.hide.fade.in div.modal-body div.container div.btnx img    30
+    Click Image    css=html body.th.th div#homepage-popup.modal.hide.fade.in div.modal-body div.container div.btnx img

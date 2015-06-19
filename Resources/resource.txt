@@ -1,0 +1,4 @@
+*** Variables ***
+${URL}            http://th.ensogouat.com/?do_access=1
+${testTradeAcc_username}    robot01@ensogo.com
+${testTradeAcc_password}    robot01

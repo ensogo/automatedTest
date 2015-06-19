@@ -1,0 +1,17 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          ../Resources/resource.txt
+Resource          ../resources/usecase_behavior.txt
+
+*** Keywords ***
+open topup menu
+    [Arguments]    ${topUpCode}
+    close ad-on
+    Wait Until Element Is Visible    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li.username a.user.top-pills
+    Mouse Over    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li.username a.user.top-pills
+    Wait Until Element Is Visible    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li.username ul.user-menu li a
+    Click Element    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li.username ul.user-menu li a
+    Wait Until Element Is Visible    xpath=//html/body/div[2]/div[3]/div[2]/ul/li[7]/a
+    Click Element    xpath=//html/body/div[2]/div[3]/div[2]/ul/li[7]/a
+    Input Text    //*[@id="code"]    ${topUpCode}
+    Click Button    css=.input-append button[class="btn btn-danger"]

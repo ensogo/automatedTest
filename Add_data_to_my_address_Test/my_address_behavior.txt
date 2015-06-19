@@ -1,0 +1,32 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+input data to my address
+    [Arguments]    ${address}    ${firstname}    ${lastname}    ${address1}    ${address2}    ${address3}
+    ...    ${city}    ${selectvalue}    ${postCode}    ${phoneNumber}
+    open my address menu
+    Wait Until Element Is Visible    //*[@id="user_name"]
+    Input Text    //*[@id="user_name"]    ${address}
+    Input Text    //*[@id="user_first_name"]    ${firstname}
+    Input Text    //*[@id="user_last_name"]    ${lastname}
+    Input Text    //*[@id="user_address"]    ${address1}
+    Input Text    //*[@id="user_address2"]    ${address2}
+    Input Text    //*[@id="user_address3"]    ${address3}
+    Input Text    //*[@id="user_city"]    ${city}
+    Select From List By Value    //*[@id="user_state"]    ${selectvalue}
+    Input Text    //*[@id="user_postcode"]    ${postCode}
+    Input Text    //*[@id="user_phone_number"]    ${phoneNumber}
+
+set data as default and submit from
+    Select Checkbox    //*[@id="user_default"]
+    Click Element    css=html body.th.th div.site-wrapper div.wrapper div.user-container.shipping-address-container.container div.content form#shipping_addresses.form-horizontal div.row-fluid.text-center div.shipping_address_btns div#shipping_address_save.shipping_address_btn.btn-save
+
+submit from
+    Click Button    //*[@id="shipping_address_save"]
+
+open my address menu
+    close ad-on
+    Wait Until Element Is Visible    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li.username a.user.top-pills
+    Mouse Over    css=html body.th.th div.site-wrapper div.site-nav div.nav-top div.main ul.pull-right li.username a.user.top-pills
+    Click Link    //*[@href='/th/users/shipping_addresses']

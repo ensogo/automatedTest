@@ -1,37 +1,37 @@
 *** Settings ***
 Test Teardown     Close Browser
 Library           Selenium2Library
-Resource          ../zresources/resource.txt
-Resource          ../zresources/usecase_behavior.txt
+Resource          ../resources/resource.txt
+Resource          ../resources/usecase_behavior.txt
 
 *** Test Cases ***
 Invalid username & password
-    [Template]    Login Should Fail
+    [Template]    Login Should be fail
     invalidmail@enso.com    1122334455666aaq!
 
 Invalid username
-    [Template]    Login Should Fail
+    [Template]    Login Should be fail
     invalidmail@enso.com    16123239
 
 Invalid \ password
-    [Template]    Login Should Fail
+    [Template]    Login Should be fail
     blaze.indy@gmail.com    1122334455666aaq!
 
 Empty username & password
-    [Template]    Login Should Fail
+    [Template]    Login Should be fail
     ${EMPTY}    ${EMPTY}
 
 Empty password
-    [Template]    Login Should Fail
+    [Template]    Login Should be fail
     blaze.indy@gmail.com    ${EMPTY}
 
 Empty username
-    [Template]    Login Should Fail
+    [Template]    Login Should be fail
     ${EMPTY}    16123239
 
 *** Keywords ***
-Login Should Fail
-    [Arguments]    ${URL}    ${user}    ${pass}
-    Enter Username and Password    ${URL}    ${user}    ${pass}
-    Wait Until Page Contains Element    css=#login-message div[id="login-message-content"]    10
+Login Should be fail
+    [Arguments]    ${user}    ${pass}
+    Enter Username and PassWord    ${user}    ${pass}
+    Wait Until Page Contains Element    css=#login-message div[id="login-message-content"]
     Element Should Be Visible    css=#login-message div[id="login-message-content"]

@@ -1,0 +1,17 @@
+*** Settings ***
+Test Teardown     Close Browser
+Library           Selenium2Library
+Resource          ../resources/usecase_behavior.txt
+Resource          ../resources/resource.txt
+Resource          topup_ensogo_behavior.txt
+
+*** Test Cases ***
+Invalid topup with incorrect code
+    [Setup]    Enter Username and PassWord    ${testTradeAcc_username}    ${testTradeAcc_password}
+    open topup menu    qweuio;lhoaps@
+    cash should be failed to add
+
+*** Keywords ***
+cash should be failed to add
+    Wait Until Element Is Visible    css=html body.th.th div.site-wrapper div.wrapper div.container div.alert.alert-error
+    ${errorTopupMsg}=    Get Text    css=html body.th.th div.site-wrapper div.wrapper div.container div.alert.alert-error
