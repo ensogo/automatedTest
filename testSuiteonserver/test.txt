@@ -4,3 +4,4 @@ Library           Selenium2Library
 *** Test Cases ***
 open page
     Open Browser    http://www.google.com
+    Input Text    xpath=asd    1234
