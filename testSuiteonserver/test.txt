@@ -4,4 +4,4 @@ Library           Selenium2Library
 *** Test Cases ***
 open page
     Open Browser    http://www.google.com
-    Input Text    xpath=q    1234
+    Input Text    name=q   1234
